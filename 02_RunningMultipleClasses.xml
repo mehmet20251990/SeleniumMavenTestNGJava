@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test name="Running multiple classes">
+        <classes>
+            <class name="tests.Day01_C05_TimeOut"></class>
+            <class name="tests.Day01_C06_Description"></class>
+            <class name="tests.Day01_C04_Enabled"></class>
+        </classes>
+    </test>
+</suite>

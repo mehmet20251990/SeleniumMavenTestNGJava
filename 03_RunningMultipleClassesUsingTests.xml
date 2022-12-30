@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test Suite">
+    <test name="Test 01">
+        <classes>
+            <class name="tests.Day01_C01_TestNGAnnotations"></class>
+            <class name="tests.Day01_C03_DependsOn"></class>
+        </classes>
+    </test>
+    <test name="Test 02">
+        <classes>
+            <class name="tests.Day01_C07_Groups"></class>
+        </classes>
+    </test>
+</suite>
