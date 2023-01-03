@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Parallel Test Suite" parallel="classes">
-    <test name="Parallel Test 01">
+<suite name="Parallel Test Suite">
+    <test name="Parallel Test 01" parallel="methods">
         <classes>
             <class name="tests.Day01_C02_Priority"></class>
             <class name="tests.Day01_C03_DependsOn"></class>
-            <class name="tests.Day01_C09_SoftAssertionTypes"></class>
+            <class name="tests.Day01_C06_Description"></class>
         </classes>
     </test>
-    <test name="Parallel Test 02">
+    <test name="Parallel Test 02" parallel="classes">
         <classes>
             <class name="tests.Day01_C02_Priority"></class>
             <class name="tests.Day01_C03_DependsOn"></class>
-            <class name="tests.Day01_C09_SoftAssertionTypes"></class>
+            <class name="tests.Day01_C06_Description"></class>
         </classes>
     </test>
     <test name="Parallel Test 03">
         <classes>
             <class name="tests.Day01_C02_Priority"></class>
             <class name="tests.Day01_C03_DependsOn"></class>
-            <class name="tests.Day01_C09_SoftAssertionTypes"></class>
+            <class name="tests.Day01_C06_Description"></class>
         </classes>
     </test>
 </suite>
