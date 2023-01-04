@@ -2,7 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Listener Test Suite">
     <listeners>
-        <listener class-name="tests.Day05_C02_ITestListener"></listener>
+        <listener class-name="org.testng.reporters.EmailableReporter2"></listener>
+        <listener class-name="org.testng.reporters.FailedReporter"></listener>
     </listeners>
     <test name="Listener Tests">
         <classes>

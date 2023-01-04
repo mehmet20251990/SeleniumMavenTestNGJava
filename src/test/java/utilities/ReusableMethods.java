@@ -11,7 +11,6 @@ import java.util.Date;
 
 public class ReusableMethods {
     public static String getScreenshot(WebDriver driver, String name) throws IOException {
-
         // Screenshot dosya ismi icin suanki tarihi string olarak aliyoruz
         String date = formatCurrentDate("yyyyMMddhhmmss");
 
@@ -25,7 +24,6 @@ public class ReusableMethods {
         FileUtils.copyFile(source, targetFile);
         return  target;
     }
-
     public static String formatCurrentDate(String pattern){
         return new SimpleDateFormat(pattern).format(new Date());
     }
