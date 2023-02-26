@@ -1,8 +1,7 @@
 package tests;
+
 import org.testng.annotations.Test;
-
 public class Day02_C01_TestNGXML_Groups {
-
     @Test(groups = {"regression"})
     public void test01(){
         System.out.println("Test01 - Regression testi calisti");

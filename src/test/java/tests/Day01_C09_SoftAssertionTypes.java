@@ -3,7 +3,6 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 public class Day01_C09_SoftAssertionTypes {
     @Test
     public void hardAssertion(){
@@ -20,7 +19,6 @@ public class Day01_C09_SoftAssertionTypes {
         softAssert.assertTrue(true); // Pass
 
         System.out.println("Soft Assertion sonrasi calisiyor");
-
         softAssert.assertAll(); // Method sonunda kesinlikle cagirilmali yoksa softassert'in çalıştığını göremeyiz...
     }
 }
