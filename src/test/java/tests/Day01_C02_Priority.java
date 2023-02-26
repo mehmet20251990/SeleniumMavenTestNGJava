@@ -1,9 +1,7 @@
 package tests;
 
 import org.testng.annotations.Test;
-
 public class Day01_C02_Priority {
-
     // TestNG (default) olarak annotation'ları naturel alfabtetik olarak çalıştırır.
     // TestNG prioritysinin sayi degeri en az olan testi ilk once calistirir
     // Priporty attribute'u icin negatif degerler kullanilabilir

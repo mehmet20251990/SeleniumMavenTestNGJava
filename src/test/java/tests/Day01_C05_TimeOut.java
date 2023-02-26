@@ -1,9 +1,7 @@
 package tests;
 
 import org.testng.annotations.Test;
-
 public class Day01_C05_TimeOut {
-
     // timeOut set edildiginde test suresi bu sureyi gecmemelidir. Gecmesi durumunda test exception firlatir
     // timeOut gerceklestigi andan itibaren sonraki satirlar execute edilmez (calistirilmaz)
     // Exception sonrasi kod bloklarimiz execute edilmez kod yarida kesilir

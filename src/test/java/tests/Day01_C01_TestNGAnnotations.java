@@ -1,7 +1,6 @@
 package tests;
 
 import org.testng.annotations.*;
-
 public class Day01_C01_TestNGAnnotations {
     // @Before/After Suite
     // @Before/After Test
