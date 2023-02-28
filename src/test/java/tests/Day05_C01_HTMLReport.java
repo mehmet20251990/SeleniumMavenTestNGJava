@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
 import utilities.BaseTestReport;
-
 public class Day05_C01_HTMLReport extends BaseTestReport {
     @Test
     public void test01() {

@@ -9,14 +9,11 @@ import org.testng.annotations.Test;
 import utilities.BaseCrossBrowserTest;
 import utilities.ExcelUtils;
 import java.time.Duration;
-
 public class Day06_C01_ExcelUtil extends BaseCrossBrowserTest {
     @Test
     public void test(){
         String path = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\testdata.xlsx";
-
         ExcelUtils eu = new ExcelUtils(path, 2);
-
         driver.get("http://crossbrowsertesting.github.io/login-form.html");
 
         String email = eu.getCellData(1,0);
@@ -27,10 +24,8 @@ public class Day06_C01_ExcelUtil extends BaseCrossBrowserTest {
         driver.findElement(By.id("submit")).click();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
         WebElement welcome = driver.findElement(By.xpath("//h2[contains(.,'Welcome')]"));
         wait.until(ExpectedConditions.visibilityOf(welcome));
-
         Assert.assertTrue(welcome.getText().contains(email));
     }
 }

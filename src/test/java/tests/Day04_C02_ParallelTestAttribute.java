@@ -1,7 +1,6 @@
 package tests;
 
 import org.testng.annotations.Test;
-
 public class Day04_C02_ParallelTestAttribute {
     @Test(
             threadPoolSize = 3,    // testimizin kac cekirdekte paralel olarak calisacagini belirler

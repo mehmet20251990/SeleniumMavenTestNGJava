@@ -3,7 +3,6 @@ package tests;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
 public class Day05_C02_ITestListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
