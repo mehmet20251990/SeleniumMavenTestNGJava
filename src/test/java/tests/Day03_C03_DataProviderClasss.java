@@ -1,7 +1,6 @@
 package tests;
 
 import org.testng.annotations.DataProvider;
-
 public class Day03_C03_DataProviderClasss {
     @DataProvider
     public  Object[][] testData() {

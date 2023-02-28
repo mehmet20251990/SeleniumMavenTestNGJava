@@ -2,7 +2,6 @@ package tests;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 public class Day03_C02_DataProvider {
     // username, email, password, number
     @Test(dataProvider = "getData")

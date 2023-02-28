@@ -1,4 +1,5 @@
 package tests;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +23,6 @@ public class Day02_C04_TestNGParametersSeleniumExample {
     @BeforeMethod
     @Parameters("browser")
     public void setup(String browserValue){
-
         switch (browserValue){
             case "chrome":
                 WebDriverManager.chromedriver().setup();
