@@ -11,7 +11,6 @@ import org.testng.annotations.Test;
 import utilities.BaseCrossBrowserTest;
 import java.time.Duration;
 import java.util.List;
-
 public class Day03_C07_CrossBrowserTestExample extends BaseCrossBrowserTest {
         // Go to https://www.amazon.com/
         // Search for 'headset' 'mouse' 'keyboard' in order with dataProvider
@@ -27,7 +26,6 @@ public class Day03_C07_CrossBrowserTestExample extends BaseCrossBrowserTest {
         // Do it for chrome and firefox with crossbrowser testing
     @Test(dataProvider = "data")
     public void amazonTest(String key){
-
         // Go to https://www.amazon.com/
         driver.get("https://www.amazon.com/");
 
