@@ -1,4 +1,5 @@
 package utilities;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -16,7 +17,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
 import org.testng.IReporter;
 import org.testng.ISuite;
 import org.testng.ISuiteResult;
@@ -45,7 +45,6 @@ public class MyReporter implements IReporter {
     private final StringBuilder buffer = new StringBuilder();
     private String dReportTitle = "TestNG Customized Report";
     private String dReportFileName = "emailable-report2.html";
-
     @Override
     public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
         try {
@@ -57,29 +56,23 @@ public class MyReporter implements IReporter {
         for (ISuite suite : suites) {
             suiteResults.add(new SuiteResult(suite));
         }
-
         writeDocumentStart();
         writeHead();
         writeBody();
         writeDocumentEnd();
-
         writer.close();
     }
-
     protected PrintWriter createWriter(String outdir) throws IOException {
         new File(outdir).mkdirs();
         return new PrintWriter(new BufferedWriter(new FileWriter(new File(outdir, dReportFileName))));
     }
-
     protected void writeReportTitle(String title) {
         writer.println("<center><h1>" + title + " - " + new Date() + "</h1></center>");
     }
-
     protected void writeDocumentStart() {
         writer.println("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">");
         writer.println("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
     }
-
     protected void writeHead() {
         writer.println("<head>");
         writer.println("<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"/>");
@@ -87,7 +80,6 @@ public class MyReporter implements IReporter {
         writeStylesheet();
         writer.println("</head>");
     }
-
     protected void writeStylesheet() {
         writer.println("<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\">");
         writer.print("<style type=\"text/css\">");
@@ -114,7 +106,6 @@ public class MyReporter implements IReporter {
         writer.print(".invisible {display:none}");
         writer.println("</style>");
     }
-
     protected void writeBody() {
         writer.println("<body>");
         writeReportTitle(dReportTitle);
@@ -123,11 +114,9 @@ public class MyReporter implements IReporter {
         writeScenarioDetails();
         writer.println("</body>");
     }
-
     protected void writeDocumentEnd() {
         writer.println("</html>");
     }
-
     protected void writeSuiteSummary() {
         NumberFormat integerFormat = NumberFormat.getIntegerInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
@@ -177,7 +166,6 @@ public class MyReporter implements IReporter {
                     writer.print(" class=\"stripe\"");
                 }
                 writer.print(">");
-
                 buffer.setLength(0);
                 writeTableData(buffer.append("<a href=\"#t").append(testIndex)
                         .append("\">")
@@ -206,12 +194,8 @@ public class MyReporter implements IReporter {
                 testIndex++;
             }
         }
-
-
-
         // Print totals if there was more than one test
         if (testIndex > 1) {
-
             writer.print("<tr>");
             writer.print("<th>Total</th>");
             writeTableHeader(integerFormat.format(totalTestsCount), "num");
@@ -224,11 +208,9 @@ public class MyReporter implements IReporter {
             writeTableHeader(convertTimeToString(totalDuration), "num");
             writer.println("</tr>");
         }
-
         writer.println("</table>");
         writer.println("</div>");
     }
-
     /**
      * Writes a summary of all the test scenarios.
      */
@@ -283,15 +265,12 @@ public class MyReporter implements IReporter {
                 }
 
                 writer.println("</tbody>");
-
                 testIndex++;
             }
         }
-
         writer.println("</table>");
         writer.println("</div>");
     }
-
     /**
      * Writes the scenario summary for the results of a given state for a single
      * test.
@@ -312,7 +291,6 @@ public class MyReporter implements IReporter {
                         + ((classIndex % 2) == 0 ? "even" : "odd");
 
                 buffer.setLength(0);
-
                 int scenariosPerClass = 0;
                 int methodIndex = 0;
                 for (MethodResult methodResult : classResult.getMethodResults()) {
@@ -344,15 +322,12 @@ public class MyReporter implements IReporter {
                             }
                         }
                     }
-
-
                     DateFormat formatter = new SimpleDateFormat("hh:mm:ss a");
                     Calendar startTime = Calendar.getInstance();
                     startTime.setTimeInMillis(start);
 
                     Calendar endTime = Calendar.getInstance();
                     endTime.setTimeInMillis(end);
-
 
                     // The first method per class shares a row with the class
                     // header
@@ -361,7 +336,6 @@ public class MyReporter implements IReporter {
                                 .append("\">");
 
                     }
-
                     // Write the timing information with the first scenario per
                     // method
                     buffer.append("<td><a href=\"#m").append(scenarioIndex)
@@ -375,7 +349,6 @@ public class MyReporter implements IReporter {
                             .append("</td>").append("<td rowspan=\"")
                             .append("\">").append(formatter.format(endTime.getTime())).append("</td></tr>");
                     scenarioIndex++;
-
                     // Write the remaining scenarios for the method
                     for (int i = 1; i < resultsCount; i++) {
                         buffer.append("<tr class=\"").append(cssClass)
@@ -384,11 +357,9 @@ public class MyReporter implements IReporter {
                                 .append(methodName).append("</a></td></tr>");
                         scenarioIndex++;
                     }
-
                     scenariosPerClass += resultsCount;
                     methodIndex++;
                 }
-
                 // Write the test results for the class
                 writer.print("<tr class=\"");
                 writer.print(cssClass);
@@ -399,14 +370,12 @@ public class MyReporter implements IReporter {
                 writer.print(Utils.escapeHtml(classResult.getClassName()));
                 writer.print("</td>");
                 writer.print(buffer);
-
                 classIndex++;
             }
             scenarioCount = scenarioIndex - startingScenarioIndex;
         }
         return scenarioCount;
     }
-
     /**
      * Writes the details for all test scenarios.
      */
@@ -433,7 +402,6 @@ public class MyReporter implements IReporter {
             }
         }
     }
-
     /**
      * Writes the scenario details for the results of a given state for a single
      * test.
@@ -458,23 +426,18 @@ public class MyReporter implements IReporter {
                 }
             }
         }
-
         return scenarioIndex - startingScenarioIndex;
     }
-
     /**
      * Writes the details for an individual test scenario.
      */
-    private void writeScenario(int scenarioIndex, String label,
-                               ITestResult result) {
+    private void writeScenario(int scenarioIndex, String label, ITestResult result) {
         writer.print("<h3 id=\"m");
         writer.print(scenarioIndex);
         writer.print("\">");
         writer.print(label);
         writer.print("</h3>");
-
         writer.print("<table class=\"table-bordered result\">");
-
         boolean hasRows = false;
 
         // Write test parameters (if any)
@@ -496,7 +459,6 @@ public class MyReporter implements IReporter {
             writer.print("</tr>");
             hasRows = true;
         }
-
         // Write reporter messages (if any)
         List<String> reporterMessages = Reporter.getOutput(result);
         if (!reporterMessages.isEmpty()) {
@@ -505,7 +467,6 @@ public class MyReporter implements IReporter {
                 writer.printf(" colspan=\"%d\"", parameterCount);
             }
             writer.print(">Messages</th></tr>");
-
             writer.print("<tr><td");
             if (parameterCount > 1) {
                 writer.printf(" colspan=\"%d\"", parameterCount);
@@ -515,7 +476,6 @@ public class MyReporter implements IReporter {
             writer.print("</td></tr>");
             hasRows = true;
         }
-
         // Write exception (if any)
         Throwable throwable = result.getThrowable();
         if (throwable != null) {
@@ -537,7 +497,6 @@ public class MyReporter implements IReporter {
             writer.print("</td></tr>");
             hasRows = true;
         }
-
         if (!hasRows) {
             writer.print("<tr><th");
             if (parameterCount > 1) {
@@ -545,11 +504,9 @@ public class MyReporter implements IReporter {
             }
             writer.print(" class=\"invisible\"/></tr>");
         }
-
         writer.print("</table>");
         writer.println("<p class=\"totop\"><a href=\"#summary\">back to summary</a></p>");
     }
-
     protected void writeReporterMessages(List<String> reporterMessages) {
         writer.print("<div class=\"messages\">");
         Iterator<String> iterator = reporterMessages.iterator();
@@ -569,13 +526,11 @@ public class MyReporter implements IReporter {
         }
         writer.print("</div>");
     }
-
     protected void writeStackTrace(Throwable throwable) {
         writer.print("<div class=\"stacktrace\">");
         writer.print(Utils.shortStackTrace(throwable, true));
         writer.print("</div>");
     }
-
     /**
      * Writes a TH element with the specified contents and CSS class names.
      *
@@ -588,7 +543,6 @@ public class MyReporter implements IReporter {
     protected void writeTableHeader(String html, String cssClasses) {
         writeTag("th", html, cssClasses);
     }
-
     /**
      * Writes a TD element with the specified contents.
      *
@@ -598,7 +552,6 @@ public class MyReporter implements IReporter {
     protected void writeTableData(String html) {
         writeTableData(html, null);
     }
-
     /**
      * Writes a TD element with the specified contents and CSS class names.
      *
@@ -611,7 +564,6 @@ public class MyReporter implements IReporter {
     protected void writeTableData(String html, String cssClasses) {
         writeTag("td", html, cssClasses);
     }
-
     /**
      * Writes an arbitrary HTML element with the specified contents and CSS
      * class names.
@@ -638,21 +590,18 @@ public class MyReporter implements IReporter {
         writer.print(tag);
         writer.print(">");
     }
-
     /**
      * Groups {@link TestResult}s by suite.
      */
     protected static class SuiteResult {
         private final String suiteName;
         private final List<TestResult> testResults = Lists.newArrayList();
-
         public SuiteResult(ISuite suite) {
             suiteName = suite.getName();
             for (ISuiteResult suiteResult : suite.getResults().values()) {
                 testResults.add(new TestResult(suiteResult.getTestContext()));
             }
         }
-
         public String getSuiteName() {
             return suiteName;
         }
@@ -664,7 +613,6 @@ public class MyReporter implements IReporter {
             return testResults;
         }
     }
-
     /**
      * Groups {@link ClassResult}s by test, type (configuration or test), and
      * status.
@@ -686,7 +634,6 @@ public class MyReporter implements IReporter {
                 return result;
             }
         };
-
         private final String testName;
         private final Date testStartTime;
         private final Date testEndTime;
@@ -702,7 +649,6 @@ public class MyReporter implements IReporter {
         private final long duration;
         private final String includedGroups;
         private final String excludedGroups;
-
         public TestResult(ITestContext context) {
             testName = context.getName();
 
@@ -736,7 +682,6 @@ public class MyReporter implements IReporter {
             includedGroups = formatGroups(context.getIncludedGroups());
             excludedGroups = formatGroups(context.getExcludedGroups());
         }
-
         /**
          * Groups test results by method and then by class.
          */
@@ -793,83 +738,66 @@ public class MyReporter implements IReporter {
             }
             return classResults;
         }
-
         public String getTestName() {
             return testName;
         }
-
         public Date getTestStartTime() {
             return testStartTime;
         }
-
         public Date getTestEndTime() {
             return testEndTime;
         }
-
-
         /**
          * @return the results for failed configurations (possibly empty)
          */
         public List<ClassResult> getFailedConfigurationResults() {
             return failedConfigurationResults;
         }
-
         /**
          * @return the results for failed tests (possibly empty)
          */
         public List<ClassResult> getFailedTestResults() {
             return failedTestResults;
         }
-
         /**
          * @return the results for skipped configurations (possibly empty)
          */
         public List<ClassResult> getSkippedConfigurationResults() {
             return skippedConfigurationResults;
         }
-
         /**
          * @return the results for skipped tests (possibly empty)
          */
         public List<ClassResult> getSkippedTestResults() {
             return skippedTestResults;
         }
-
         /**
          * @return the results for passed tests (possibly empty)
          */
         public List<ClassResult> getPassedTestResults() {
             return passedTestResults;
         }
-
         public int getFailedTestCount() {
             return failedTestCount;
         }
-
         public int getSkippedTestCount() {
             return skippedTestCount;
         }
-
         public int getPassedTestCount() {
             return passedTestCount;
         }
-
         public long getDuration() {
             return duration;
         }
-
         public String getIncludedGroups() {
             return includedGroups;
         }
-
         public String getExcludedGroups() {
             return excludedGroups;
         }
-
         public int getTestCount() {
             return testCount;
         }
-
         /**
          * Formats an array of groups for display.
          */
@@ -877,7 +805,6 @@ public class MyReporter implements IReporter {
             if (groups.length == 0) {
                 return "";
             }
-
             StringBuilder builder = new StringBuilder();
             builder.append(groups[0]);
             for (int i = 1; i < groups.length; i++) {
@@ -886,14 +813,12 @@ public class MyReporter implements IReporter {
             return builder.toString();
         }
     }
-
     /**
      * Groups {@link MethodResult}s by class.
      */
     protected static class ClassResult {
         private final String className;
         private final List<MethodResult> methodResults;
-
         /**
          * @param className
          *            the class name
@@ -904,11 +829,9 @@ public class MyReporter implements IReporter {
             this.className = className;
             this.methodResults = methodResults;
         }
-
         public String getClassName() {
             return className;
         }
-
         /**
          * @return the non-null, non-empty {@link MethodResult} list
          */
@@ -916,13 +839,11 @@ public class MyReporter implements IReporter {
             return methodResults;
         }
     }
-
     /**
      * Groups test results by method.
      */
     protected static class MethodResult {
         private final List<ITestResult> results;
-
         /**
          * @param results
          *            the non-null, non-empty result list
@@ -930,7 +851,6 @@ public class MyReporter implements IReporter {
         public MethodResult(List<ITestResult> results) {
             this.results = results;
         }
-
         /**
          * @return the non-null, non-empty result list
          */

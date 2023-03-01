@@ -3,7 +3,6 @@ package utilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 public class JSUtils {
     public static WebDriver driver;
     //This method will takes two parameter: WebElement, and WebDriver

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 public class ExcelUtils {
     private Workbook workbook;
     private Sheet sheet;
@@ -33,7 +32,6 @@ public class ExcelUtils {
     }
     // exceldeki verileri List<Map<String,String>> formatina cevirerek dondurur. Javada rahat calismamizi saglar
     public List<Map<String, String>> getDataList() {
-
         // getting all columns
         List<String> columns = getColumnsNames();
         // method will return this
